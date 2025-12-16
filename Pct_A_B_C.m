@@ -29,7 +29,8 @@ Fd=D*F1+(1-D)*F2;
 x=-inv(Ad)*Bd*u;
 y=Ed*x+Fd*u;
 
-Ron=0; Rg=0; Vd=0; n=4.7; 
+Ron=0; Rg=0; Vd=0;
+n=4.7; 
 % D = 0.4599;
 
 Mideal=simplify(eval(y(1)/Vg))
@@ -43,24 +44,26 @@ Imax=2;
 Mimpus=Voimpus/Vg;
 D=double(simplify(solve(nn-(Mimpus/Mideal),D)))
 
-R=Voimpus/Imax
+R=Voimpus/Imax;
 syms Vd
 Rg=10e-3; Ron=15e-3; C=100e-6; Lm=500e-6;
-double(eval(simplify(solve(y(1)-Voimpus,Vd))))
+Vd=double(eval(simplify(solve(y(1)-Voimpus,Vd))))
 
+syms D
+D_cal=solve(y(1)-Voimpus,D)
 % punctul C
 
 Iout=Imin:0.01:Imax;
 
 for i=1:length(Iout)
     R=Voimpus/Iout(i);
+    D = eval(D_cal(1));
+    rand(i) = eval(Mimpus/Mideal);
 end
 
-D=solve(y(1));
-Mideal=(n*D)/(1-D);
-nn=eval(Mimpus/Mideal);
 
-% plot(Iout,nn)
+
+plot(Iout,rand)
 
 
 

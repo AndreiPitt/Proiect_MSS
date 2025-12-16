@@ -3,7 +3,7 @@ clear; clc; close all
 syms Rg R Vg LM C Ron Vo D fs n Ts Io Vd
 
 U=[Vg; Vd];
-
+n = 2;
 %starea 1
 A1=[-(Rg+Ron)/LM	0;  0 -1/(R*C)];
 B1=[1/LM 0;  0  0]; 

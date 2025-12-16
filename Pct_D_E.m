@@ -4,12 +4,12 @@ clear all; clc; close all
 
 syms Rg R Vg LM C Ron Vo D fs n Ts Io VD
 %Elementele de circuit
-Rg = 10e-3; Ron=15e-3; C=100e-6; LM=500e-6; n = 4.7; D = 0.4599; R = 12; Vg = 5; VD = 0.8;
+Rg = 10e-3; Ron=15e-3; C=100e-6; LM=500e-6; n = 4.7; D = 0.4599; R = 12; Vg = 5; VD = 4.7819;
 % u=[Vg; Vd];
  
 %starea 1
 A1=[-(Rg+Ron)/LM	0;  0 -1/(R*C)];
-B1=[1/LM 0;  0  0]; 
+B1=[1/LM 0;  0  0];   
 E1=[0 1; 0 1/R];
 F1=[0 0; 0 0];
 %starea 2 
@@ -35,5 +35,5 @@ bode(H);
 
 % punctul E
 
-% [x,u,y,dx] = trim('Sim_trim',[],[],[NaN 19.1633 NaN],[],[],[false true false])
-% D=u
+[x,u,y,dx] = trim('Sim_trim',[],[],[NaN 2],[],[],[false true])
+D=u
