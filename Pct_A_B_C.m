@@ -44,7 +44,7 @@ Imax=2;
 Mimpus=Voimpus/Vg;
 D=double(simplify(solve(nn-(Mimpus/Mideal),D)))
 
-R=Voimpus/Imax;
+R=Voimpus/Imax
 syms Vd
 Rg=10e-3; Ron=15e-3; C=100e-6; Lm=500e-6;
 Vd=double(eval(simplify(solve(y(1)-Voimpus,Vd))))
