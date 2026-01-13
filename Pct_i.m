@@ -2,6 +2,7 @@ clear; clc; close all
 % Definim variabilele simbolice necesare
 syms Rg R Vg LM C Ron Vo D fs n Ts Io Vd s
 
+Rg = 10e-3; Ron=15e-3; C=100e-6; LM=500e-6; n = 4.7; D = 0.4599; R = 12; Vg = 5; Vd = 4.7819;
 U=[Vg; Vd];
 
 %punctu A 
