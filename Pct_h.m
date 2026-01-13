@@ -11,7 +11,7 @@ extr=[0 1];
 
 Vg=5;incr=0.1; lambda=zeros(2); % initializari parametru de simulare, increment si multiplicatori caracteristici in cerc
  while abs(lambda(1))<1 && abs(lambda(2))<1  
-      D=fzero(@(x) Pct_h_functie_calcul_D(x,Vg,Aon,Bon,Aoff,Boff,Ts,k,Vref,Vu,Vl),0); 
+      D=fzero(@(x) Pct_h_functie_calcul_D(x,Vg,Vd,Aon,Bon,Aoff,Boff,Ts,k,Vref,Vu,Vl),0); 
       Phi1=expm(Aon*D*Ts); 
       Psi1=Aon\(Phi1-I)*Bon; 
       Phi2=expm(Aoff*(1-D)*Ts);

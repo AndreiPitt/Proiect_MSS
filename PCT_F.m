@@ -19,12 +19,12 @@ Ed=D*E1+(1-D)*E2;
 Fd=D*F1+(1-D)*F2;
 
 %simulare folosind modelul comutat
-Tsim = [0 10e-3]; %simulam pe o durata de 10ms, pornind de la t=0
+Tsim = [0 40e-3]; %simulam pe o durata de 10ms, pornind de la t=0
 % definim pasul de simulare dt, pentru modelul comutat dt trebuie sa fie de 100-1000 ori mai mic decat Ts
 % ex: daca alegem dt = Ts = 10us, rezultatul simularii nu mai este corect
 dt = odeset('MaxStep', Ts/100); 
 X0 = [0;0]; %conditii initiale nule
-% X0 = [2.1248; 19.2163]; %conditii initiale pentru a incepe simularea direct din stare stationara
+X0 = [4.2510 ;  28.0438]; %conditii initiale pentru a incepe simularea direct din stare stationara
                           %se iau valorile din vectorul x de la finalul unei perioade, dupa ce functionarea convertorului s-a stabilizat
                           %[2.1248; 19.2163] - ultimele valori din vectorul x
 [tc,xc] = ode45('comutat', Tsim, X0, dt);
@@ -38,13 +38,13 @@ plot(tc, xc(:,2)); %afisam grafic a doua marime din x (vC)
 xlabel("timp [s]"); ylabel("vC [V]");
 
 %simulare folosind modelul mediat
-Tsim = [0 10e-3]; %simulam pe o durata de 10ms, pornind de la t=0
+Tsim = [0 40e-3]; %simulam pe o durata de 10ms, pornind de la t=0
 % definim pasul de simulare dt, pentru modelul mediat dt poate sa fie egal cu Ts
 dt = odeset('MaxStep', Ts); 
 X0 = [0;0]; %conditii initiale nule 
 % conditii initiale pentru a incepe simularea direct din stare stationara,se decomenteaza liniile 48 si 49
-% U = [Vg; VD]; %vector de intrare utilizat pentru a calcula X0
-% X0 = -inv(Ad) * Bd * U; %valabil pentru modelul mediat
+U = [Vg; VD]; %vector de intrare utilizat pentru a calcula X0
+X0 = -inv(Ad) * Bd * U; %valabil pentru modelul mediat
 [tm,xm] = ode45('mediat', Tsim, X0, dt);
 figure(2)
 subplot(2,1,1)

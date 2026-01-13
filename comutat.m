@@ -31,10 +31,10 @@ B2=[1/(LM*(1+n)) -1/(LM*(1+n));  0  0];
 E2=[0 1; 0 1/R];
 F2=[0 0; 0 0];
    
-Aq=D*A1+(1-D)*A2;
-Bq=D*B1+(1-D)*B2;
-Eq=D*E1+(1-D)*E2;
-Fq=D*F1+(1-D)*F2;
+Aq=q*A1+(1-q)*A2;
+Bq=q*B1+(1-q)*B2;
+Eq=q*E1+(1-q)*E2;
+Fq=q*F1+(1-q)*F2;
 
 u = [Vg;VD]; % vectorul de intrare 
 dxdt = Aq * x + Bq * u; %ecuatia diferentiala pe care dorim sa o rezolvam

@@ -27,9 +27,9 @@ Ed=D*E1+(1-D)*E2;
 Fd=D*F1+(1-D)*F2;
 
 [numarator , numitor]=ss2tf(Ad,Bd,Ed,Fd,1); % 1 -> determinam functiile de transfer in raport cu prima marime din u (Vg)
-H=tf(numarator(2,:),numitor) %audiosusceptibilitatea (v0/Vg)
+H=tf(numarator(1,:),numitor) %audiosusceptibilitatea (v0/Vg)
 poli=pole(H) %determinam polii pentru H pentru a vedea daca sistemul este stabil, Re{poli}<0
-Vgp=1; %perturbatiile de la intrare, amplitudine = 1Vvv, f=1kHz
+Vgp=0.3; %perturbatiile de la intrare, amplitudine = 0.3Vvv, f=1kHz
 Vop=Vgp*abs(evalfr(H,j*2*pi*1e3)) %perturbatiile de la iesire, se evalueaza H la frecventa perturbatiilor (jw=j*2*pi*f)
 bode(H); 
 
