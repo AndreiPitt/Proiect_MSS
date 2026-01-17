@@ -1,6 +1,6 @@
 clear all; close all; clc;
 %Elementele de circuit
-Rg = 10e-3; Ron=15e-3; C=100e-6; LM=500e-6; n = 4.7; D = 0.4599; R = 12; Vg = 5; VD = 0.8; fs = 40e3;
+Rg = 10e-3; Ron=15e-3; C=100e-6; LM=500e-6; n = 4.7; D = 0.4599; R = 12; Vg = 5; VD = 4.7819; fs = 40e3;
 Ts = 1/fs;
 %starea 1
 A1=[-(Rg+Ron)/LM	0;  0 -1/(R*C)];
