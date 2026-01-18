@@ -33,12 +33,12 @@ while t<Tsim
      Aq=q*A1+(1-q)*A2;
      Bq=q*B1+(1-q)*B2;
     
-     k1=Aq*x(:,n)+Bq*U;
-     k2=Aq*(x(:,n)+h*(1/2)*k1)+Bq*U;
-     k3=Aq*(x(:,n)+h*(1/2)*k2)+Bq*U;
-     k4=Aq*(x(:,n)+h*(k3))+Bq*U;
-     x(:,n+1)=x(:,n)+h*((1/6)*k1+(2/6)*k2+(2/6)*k3 +(1/6)*k4);
+     if n == 1
+         x(:,n+1) = (I - h*Aq) \ (x(:,n) + h*Bq*U);
+     else
+         x(:,n+1) = (4/3)*x(:,n)-(1/3)*x(:,n-1)+h*(2/3)*Aq*x(:,n)+Bq*U;
+     end
      n=n+1; t=time(n);
 end
 plot(time,x)
-title('Simulare convertor prin metoda RUNGE-KUTTA4');
+title('Simulare convertor prin metoda Gear 2');

@@ -4,12 +4,18 @@ clear all; close all; clc;
 L=500e-6; C=100e-6; R=12; k=1; fs = 40e3; Ts=1/fs; Vl=3.8; Vu=8.2; Vref=11; Rg = 10e-3; Ron=15e-3; n = 4.7;
 
 % % Matricile de stare. Indicele 1 corespunde primei stari topologice, indiferent care este ea (on sau off)
-Aon=[-(Rg+Ron)/L	0;  0 -1/(R*C)];  Bon=[1/L 0;  0  0];
-Aoff=[-Rg/(L*(1+ n))	  -1/(L*(1+n));   1/C	-1/(R*C)]; Boff=[1/(L*(1+n)) -1/(L*(1+n));  0  0]; 
+
+Aon=[-(Rg+Ron)/L	0;  0 -1/(R*C)];
+Bon=[1/L 0;  0  0]; 
+
+Aoff=[-Rg/(L*(1+n)^2)	  -1/(L*(1+n));   1/((1+n)*C)	-1/(R*C)];
+Boff=[1/(L*(1+n)) -1/(L*(1+n));  0  0]; 
+
+
 I=eye(2);
 extr=[0 1]; 
 
-Vg=5; Vd = 4.7819; incr=0.1; lambda=zeros(2); % initializari parametru de simulare, increment si multiplicatori caracteristici in cerc
+Vg=5; Vd = 2.6701; incr=0.1; lambda=zeros(2); % initializari parametru de simulare, increment si multiplicatori caracteristici in cerc
 u = [Vg ; Vd];
 while abs(lambda(1))<1 && abs(lambda(2))<1  
       D=fzero(@(x) Pct_h_functie_calcul_D(x,Vg,Vd,Aon,Bon,Aoff,Boff,Ts,k,Vref,Vu,Vl),0.4599); 
