@@ -47,12 +47,12 @@ Kp = C_pid.Kp;
 Ki = C_pid.Ki;
 Kd = C_pid.Kd;
 
-a = Kp + Ki*Ts + Kd/Ts % 0.1570
-b = Kp + 2*Kd/Ts % 0.3046
-c = Kd/Ts % 0.1477
+a = Kp + Ki*Ts + Kd/Ts % 0.1262
+b = Kp + 2*Kd/Ts % 0.2456
+c = Kd/Ts % 0.1195
 
 
-% Ecuatia u[k] = u[k-1] + (0.1570)*e[k] - (0.3046)*e[k-1] + (0.1477)*e[k-2]
+% Ecuatia u[k] = u[k-1] + (0.1262)*e[k] - (0.2456)*e[k-1] + (0.1195)*e[k-2]
 
 
 
