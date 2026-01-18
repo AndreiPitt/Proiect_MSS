@@ -1,6 +1,6 @@
 clear all; close all; clc;
 %Elementele de circuit
-Rg = 10e-3; Ron=15e-3; C=100e-6; LM=500e-6; n = 4.7; D = 0.4599; R = 12; Vg = 5; VD = 2.6701; fs = 40e3;
+Rg = 10e-3; Ron=15e-3; C=100e-6; LM=500e-6; n = 4.7; D = 0.4599; R = 12; Vg = 5; VD = 4.7819; fs = 40e3;
 Ts = 1/fs;
 %starea 1
 A1=[-(Rg+Ron)/LM	0;  0 -1/(R*C)];
@@ -8,7 +8,7 @@ B1=[1/LM 0;  0  0];
 E1=[0 1; 0 1/R];
 F1=[0 0; 0 0];
 %starea 2 
-A2=[-Rg/(LM*(1+n)^2)	  -1/(LM*(1+n));   1/((1+n)*C)	-1/(R*C)];
+A2=[-Rg/(LM*(1+ n))	  -1/(LM*(1+n));   1/C	-1/(R*C)];
 B2=[1/(LM*(1+n)) -1/(LM*(1+n));  0  0]; 
 E2=[0 1; 0 1/R];
 F2=[0 0; 0 0];
