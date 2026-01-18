@@ -51,8 +51,9 @@ Vd=double(eval(simplify(solve(y(1)-Voimpus,Vd))))
 
 syms D
 D_cal=solve(y(1)-Voimpus,D)
-% punctul C
 
+
+% punctul C
 Iout=Imin:0.01:Imax;
 
 for i=1:length(Iout)
@@ -61,11 +62,23 @@ for i=1:length(Iout)
     rand(i) = eval(Mimpus/Mideal);
 end
 
- 
-
 plot(Iout,rand)
 
+Rg = 10e-3; Ron=15e-3; C=100e-6; LM=500e-6; n = 4.7; 
+D = 0.4599; R = 12; Vg = 5; Vd = 4.7819; fs = 40000;
+
+P_out = (Voimpus * Imax);
+iLm = double(eval(x(1)));
+
+
+P_q = D * Ron * iLm^2;
+P_d = (1-D) * Vd * (iLm / (1+n));
+P_rg = D * Rg * iLm^2 + (1-D) * Rg * (iLm / (1+n))^2;
+
+P_total = P_q + P_d + P_rg;
+verificare_randament =  P_out / (P_total + P_out);
 
 
 
-
+%Care dispozitiv ar trebui înlocuit dacă se doreşte mărirea randamentului în acest punct de funcţionare?
+%Raspuns: Dioda
