@@ -71,11 +71,11 @@ P_out = (Voimpus * Imax);
 iLm = double(eval(x(1)));
 
 
-P_q = D * Ron * iLm^2;
-P_d = (1-D) * Vd * (iLm / (1+n));
-P_rg = D * Rg * iLm^2 + (1-D) * Rg * (iLm / (1+n))^2;
+P_q = D * Ron * iLm^2
+P_d = (1-D) * Vd * (iLm / (1+n))
+P_rg = D * Rg * iLm^2 + (1-D) * Rg * (iLm / (1+n))^2
 
-P_total = P_q + P_d + P_rg;
+P_total = P_q + P_d + P_rg
 verificare_randament =  P_out / (P_total + P_out);
 
 

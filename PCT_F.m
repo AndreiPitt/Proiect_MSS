@@ -23,11 +23,10 @@ Tsim = [0 40e-3]; %simulam pe o durata de 10ms, pornind de la t=0
 % definim pasul de simulare dt, pentru modelul comutat dt trebuie sa fie de 100-1000 ori mai mic decat Ts
 % ex: daca alegem dt = Ts = 10us, rezultatul simularii nu mai este corect
 dt = odeset('MaxStep', Ts/100); 
-X0 = [0;0]; %conditii initiale nule
-X0 = [3.6488 ;  24.1220]; %conditii initiale pentru a incepe simularea direct din stare stationara
+% X0 = [0;0]; %conditii initiale nule
+X0 = [21.1070;23.9998]; %conditii initiale pentru a incepe simularea direct din stare stationara
                           %se iau valorile din vectorul x de la finalul unei perioade, dupa ce functionarea convertorului s-a stabilizat
                           %[2.1248; 19.2163] - ultimele valori din vectorul x
-x0c=[ 3.6488 ;  24.1220];
 [tc,xc] = ode45('comutat', Tsim, X0, dt);
 figure(1)
 subplot(2,1,1)
@@ -42,7 +41,7 @@ xlabel("timp [s]"); ylabel("vC [V]");
 Tsim = [0 40e-3]; %simulam pe o durata de 10ms, pornind de la t=0
 % definim pasul de simulare dt, pentru modelul mediat dt poate sa fie egal cu Ts
 dt = odeset('MaxStep', Ts); 
-X0 = [0;0]; %conditii initiale nule 
+% X0 = [0;0]; %conditii initiale nule 
 % conditii initiale pentru a incepe simularea direct din stare stationara,se decomenteaza liniile 48 si 49
 U = [Vg; VD]; %vector de intrare utilizat pentru a calcula X0
 X0 = -inv(Ad) * Bd * U; %valabil pentru modelul mediat
@@ -67,27 +66,3 @@ subplot(2,1,2)
 plot(tc,xc(:,2),tm,xm(:,2)); %afisam grafic a doua marime din x (vC)
 xlabel("timp");   ylabel("vC [V]");
 legend("vC-comutat","vC-mediat")
-
-% %simulare folosind comanda lsim (este echivalenta cu cea obtinuta folosind modelul mediat)
-% circuit = ss(Ad, Bd, Ed, Fd); %definin circuitul simulat
-% tsim = 0:Ts:10e-3; %timpul de simulare folosit pentru comanda lsim (se specifica timpul initial, pasul si timpul final)
-% % Vg are aceeasi valoare la fiecare moment de timp din tsim (pe toata durata simularii)
-% Vg_v = Vg * ones(length(tsim), 1);   %vector de tip coloana cu toate elementele egale cu Vg
-% % Vg_v = Vg + 0.5*sin(2*pi*1e3*tsim)'; %Vg cu perturbatii sinusoidale
-% % VD are aceeasi valoare la fiecare moment de timp din tsim (pe toata durata simularii)
-% VD_v = VD * ones(length(tsim), 1);   %vector de tip coloana cu toate elementele egale cu VD
-% u = [Vg_v VD_v]; 
-% X0 = [0; 0]; %conditii initiale nule 
-% y = lsim(circuit, u, tsim, X0);
-% %afisam pe acelasi grafic rezultatele obtinute folosind modelul mediat si comanda lsim
-% figure(4)
-% subplot(2,1,1)
-% plot(tm,xm(:,1),tsim, y(:,1)) 
-% xlabel("timp"); ylabel("iL [A]");%afisam grafic prima marime din x (iL)
-% title("simulare folosind modelul mediat si comanda lsim")
-% legend("iL-mediat","iL-lsim")
-% subplot(2,1,2)
-% plot(tm,xm(:,2),tsim, y(:,2)) %afisam grafic a doua marime din x (vC)
-% xlabel("timp");  ylabel("vC [V]");
-% legend("vC-mediat","v0=vC-lsim")
-% 
